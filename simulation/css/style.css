@@ -1,0 +1,108 @@
+body{background: background;}
+
+#experiment-header-logo{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#main-wrapper{
+    border-radius: 5px;    
+    background-color: aliceblue;
+    width: 1350px;
+    height: 610px;
+	//float: center;
+    padding-left: 5px;
+    border: 2px solid navy;
+    margin: 10px;
+}
+#input-wrapper{
+    float: left;
+    width: 600px;
+    // border: solid 1px red;
+}
+#canvas3d-wrapper{
+    display: inline-block;
+    margin:0 auto;    
+    width: 600px;
+    //padding-left: 50px;
+    // border: 2px solid brown;
+}
+#canvas3d-title, #controller-title, #graph-title, #input-title{
+    height: 25px;
+    color: #638EA8;
+    background-color: #E4EAED;    
+    border-top: 1px #85A8C2 solid;
+    border-right: 1px #85A8C2 solid;
+    border-bottom: 1px #85A8C2 solid;
+    border-left: 1px #85A8C2 solid;    
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 10px;
+	padding-top: 5px;
+}
+#canvas3d-view{
+    color: #638EA8;
+    height: 560px;   
+    border-top: 1px #85A8C2 solid;
+    border-right: 1px #85A8C2 solid;
+    border-bottom: 1px #85A8C2 solid;
+    border-left: 1px #85A8C2 solid; 
+}
+#controller-graph-wrapper{
+    float: right;
+    padding-right: 5px;
+    width: 442px;
+}
+#controller-wrapper{
+}
+#graph-wrapper{
+	padding-top: 1px;
+    height: 80px;
+    //background-color: #E4EAED;
+}
+#history-wrapper{
+	padding-top: 1px;
+    height: 230px;
+    //background-color: #E4EAED;
+}
+#controller-view{
+    height: 210px;
+    // border: solid 1px brown;
+}
+#graph-view{}
+#input-wrapper{
+    width: 300px;
+    height: 650px;
+    padding-left: 1px;
+
+}
+#puma-560-footer{
+    background-color:  blanchedalmond;
+    text-align: center;
+    height: 20px;
+    width: 1100px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+ #myTable, th, td{               
+                border: 1px solid black;            
+            }
+#rangeslider{
+    width: 50%;
+    }
+.allow-scroll {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    background-color: None;
+}
+#history {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    background-color: None;
+}

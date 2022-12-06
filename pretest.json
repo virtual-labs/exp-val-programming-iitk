@@ -1,0 +1,27 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "What is the number of degree of freedom (DOF) in PUMA560 robot",
+      "answers": {
+        "a": "5",
+        "b": "6",
+        "c": "7",
+        "d": "None of this"
+      },
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+    {
+      "question": "How many prismatic joints are there in the PUMA robot",
+      "answers": {
+        "a": "2",
+        "b": "1",
+        "c": "0",
+        "d": "6"
+      },
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    }
+  ]
+}
