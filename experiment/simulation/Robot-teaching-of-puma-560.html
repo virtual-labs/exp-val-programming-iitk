@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script src="../js/mathjs/math.js"></script>
+        <script src="../js/mathjs/math.min.js"></script>
+        <script src="../js/plotly-latest.min.js"></script>
+        <script src="../js/MathJax.js"></script>
+		<script src="../js/jquery/jquery-3.5.0.js"></script>
+        <script type="text/javascript" async
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_CHTML"></script>
+
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+
+        <script type="text/javascript" src="../js/threejs/three.min.js"></script>
+        <script type="text/javascript" src="../js/threejs/TrackballControls.js"></script>
+        <script type="text/javascript" src="../js/threejs/Detector.js"></script>
+        <script type="text/javascript" src="../js/threejs/stats.min.js"></script> 
+
+
+        <script type="text/javascript" src="./js/axis.js"></script>
+        <script type="text/javascript" src="./js/PUMA_scene.js"></script>
+        <script type="text/javascript" src="./js/PUMA_controller.js"></script>
+        <script src="./js/PUMA_tmat.js" type="text/javascript"></script>
+        <script src="./js/graph.js" type="text/javascript"></script>
+
+        <!--Load fonts-->
+        <script src="fonts/gentilis_bold.typeface.js"></script>
+        <script src="fonts/gentilis_regular.typeface.js"></script>
+        <script src="fonts/optimer_bold.typeface.js"></script>
+        <script src="fonts/optimer_regular.typeface.js"></script>
+        <script src="fonts/helvetiker_bold.typeface.js"></script>
+        <script src="fonts/helvetiker_regular.typeface.js"></script>
+        <script src="fonts/droid_sans_regular.typeface.js"></script>
+        <script src="fonts/droid_sans_bold.typeface.js"></script>
+        <script src="fonts/droid_serif_regular.typeface.js"></script>
+        <script src="fonts/droid_serif_bold.typeface.js"></script>
+
+    </head>
+    <body onload="myFunction()"><center>
+        <div class="logo" id="experiment-header-logo">
+            <img src="../images/logo.jpg" style="width:1360px; height:130px">
+        </div>
+
+        <div id="main-wrapper" >
+
+
+            <div id="input-wrapper" >
+                <div id="input-title">Input Panel</div>            
+                <div id="input-view">
+                    <fieldset>
+                        <legend><strong>Instruction</strong></legend>
+                        <ul>
+                            <li>PUMA 560 is a six degree of freedom robot manipulator</li>
+							<br>
+                            <li>The absolute positioning of the joints motion is incorporated in this simulation </li>
+							<br>
+                            <li>Here a constant RPM value of 25 is set for joint motion, which needs to be entered appropriately in the VAL command </li>
+                        </ul>
+                    </fieldset>
+					<br>
+                    
+                         <center><fieldset>
+						 <legend><b>Enter VAL Commands</b></legend>
+                        <p id="jrv-msg" style="color: red; "></p>
+                        <center><table>
+                                		
+					<tr><td colspan ="2" align = "center"><input type="text" name="size4" size="25"  value="DO READY" id="th1"></td>
+					
+					<td colspan ="2" align = "center"><input type="button" id="execute" value="GO" ></td></tr>
+                                
+                            </table></center><br>
+							</fieldset></center>
+							<br>
+							
+                    <center><fieldset>
+                        <legend><strong style="padding-bottom: 10px;">Transformation Matrix</strong></legend>
+                        <p id="demo"></p>
+                    </fieldset></center>
+                </div>
+            </div><!-- End of Input wrapper-->
+            <div id="canvas3d-wrapper">
+                <div id="canvas3d-title">Simulator</div>            
+                <div id="canvas3d-view"></div>                       
+            </div><!-- End of canvas3d wrapper-->
+
+            <div id="controller-graph-wrapper">
+
+                <div id="controller-wrapper">
+                    <div id="controller-title">VAL Command List</div>
+                    <div class="allow-scroll" id="controller-view">
+                       <table >
+    <thead>
+      <tr>
+        <th colspan ="1.1" align = "center">Commands</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+                  <tr class="success">
+        <td>DO READY</td>
+        <td>Takes the robot to home position from current location.</td>
+              </tr>
+			  <tr>
+        <td>CALI</td>
+        <td>Used for the calibration of robot.</td>
+              </tr>
+      <tr class="danger">
+        <td>DO DRIVE</td>
+        <td>Used for moving individual joint.</td>
+      </tr>
+	  <tr class="danger">
+        <td>DO DRIVE &lt; JT &gt;, &lt; degrees &gt;, &lt; speed &gt;</td>
+        <td>Used to directly move a specified joint &lt; JT &gt; a specified number of degrees &lt; degrees &gt; and at a
+specified maximum speed &lt; speed &gt;.</td>
+      </tr>
+      <tr class="info">
+        <td>DO DRIVE 1, 30, 25</td>
+        <td>Move joint-1 by 30º CCW with 25 rpm</td>
+              </tr>
+			        <tr class="info">
+        <td>DO DRIVE 2, -30, 25</td>
+        <td>Move joint-2 by 30º  CW with 25 rpm</td>
+              </tr>
+      <tr class="warning">
+        <td>HERE P1</td>
+        <td>Save the current position of the end-effector as P1.</td>
+      </tr>
+      <tr class="active">
+        <td>MOVE P1</td>
+        <td>Move the end-effector to point P1 from current position</td>
+        
+      </tr>
+	    <tr class="active">
+        <td>HERE HOME</td>
+        <td>Save the current position of the end-effector as HOME</td>
+              </tr>
+    </tbody>
+  </table>
+</div>  
+<br>
+                </div>
+                <div id="graph-wrapper">
+                    <div id="graph-title">Initilization Commands</div>
+					
+                    <fieldset><div id="quick commands">
+
+                        <input id="Home" type="button" value="DO READY" onclick="pumachange()" title="Bring Robot to Home Position">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input id="Calibration" type="button" value="CALIBRATE"  onclick="pumacalibrate()" title="Calibrate the Robot joints">
+						&nbsp;
+						
+					</div>
+					
+					</fieldset>
+                </div>
+				 <div id="history-wrapper">
+                    <div id="graph-title"><center>VAL Command History</center></div>
+                    <div id="history">
+					
+					<ul id="menu">
+        
+    </ul>
+					</div>
+                </div>
+            </div><!-- End of Controller wrapper-->
+        </div><!-- End of main wrapper-->
+
+        <footer class="default" id="lab-footer">
+            <!-- Put the content here-->
+            <div style="margin-left:40%; margin-right:40% ">
+                Copyright &copy; 2011 Indian Institute of Technology Kharagpur,<a href="../license/index.html" target="_blank" style="margin:auto"> Licensing Terms </a>
+            </div>
+        </footer>
+    </center>
+    </body>
+</html>
